@@ -5,8 +5,10 @@ metadata:
 spec:
   containers:
     - name: wag
-      image: gcr.io/pgtm-jlong/bootiful-kubernetes:latest
+      image: gcr.io/pgtm-jlong/wag:latest
       ports:
         - containerPort: 8080
           name: http
           protocol: TCP
+
+#

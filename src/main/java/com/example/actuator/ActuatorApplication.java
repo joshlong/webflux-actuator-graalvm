@@ -15,7 +15,9 @@ import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
 
@@ -33,7 +35,7 @@ public class ActuatorApplication {
 		return event -> {
 			dbc
 				.sql("create table reservation(id serial primary key, name varchar(255) not null) ").fetch().rowsUpdated()
-				.thenMany(rr.saveAll(Flux.just (new Reservation(null, "Andy"), new Reservation(null, "Josh"))))
+				.thenMany(rr.saveAll(Flux.just(new Reservation(null, "Andy"), new Reservation(null, "Josh"))))
 				.thenMany(rr.findAll())
 				.subscribe(System.out::println);
 		};
@@ -63,6 +65,15 @@ class ReservationController {
 	@GetMapping("/reservations")
 	Flux<Reservation> reservations() {
 		return this.reservationRepository.findAll();
+	}
+}
+
+@RestController
+class SlowController	{
+
+	@GetMapping("/slow")
+	Mono<String> greet() {
+		return Mono.just("Hello, world!").delayElement(Duration.ofSeconds(20));
 	}
 }
 
