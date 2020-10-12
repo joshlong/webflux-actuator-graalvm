@@ -6,6 +6,22 @@ spec:
   containers:
     - name: wag
       image: gcr.io/pgtm-jlong/wag:latest
+      readinessProbe:
+        httpGet:
+          port: 8080
+          path: /actuator/health/readiness
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+        periodSeconds: 10
+        failureThreshold: 3
+      livenessProbe:
+        httpGet:
+          port: 8080
+          path: /actuator/health/liveness
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+        periodSeconds: 10
+        failureThreshold: 3
       ports:
         - containerPort: 8080
           name: http
