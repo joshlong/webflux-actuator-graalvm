@@ -1,4 +1,5 @@
-package com.example.actuator;
+package wag;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,11 +22,15 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+	* @author Andy Clement
+	* @author Josh Long
+	*/
 @SpringBootApplication(proxyBeanMethods = false)
-public class ActuatorApplication {
+public class WagApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ActuatorApplication.class, args);
+		SpringApplication.run(WagApplication.class, args);
 	}
 
 	@Bean
@@ -69,7 +74,7 @@ class ReservationController {
 }
 
 @RestController
-class SlowController	{
+class SlowController {
 
 	@GetMapping("/slow")
 	Mono<String> greet() {
@@ -85,3 +90,4 @@ class GreetingsController {
 		return Collections.singletonMap("greetings", "Olá!");
 	}
 }
+

@@ -98,7 +98,7 @@
                         <version>20.2.0</version>
                         <configuration>
                             <mainClass>
-                                com.example.actuator.ActuatorApplication
+                                wag.WagApplication
                             </mainClass>
                             <imageName>${project.artifactId}</imageName>
                         </configuration>

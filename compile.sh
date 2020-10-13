@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-ARTIFACT=webflux-actuator-graalvm
-MAINCLASS=com.example.actuator.ActuatorApplication
+ARTIFACT=wag
+MAINCLASS=wag.WagApplication
 VERSION=0.0.1-SNAPSHOT
 
 GREEN='\033[0;32m'
